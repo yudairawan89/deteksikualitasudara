@@ -14,7 +14,7 @@ with col_logo:
 with col_title:
     st.markdown("""
         <h1 style='color:#004488;margin-bottom:0;'>📡 Sistem Monitoring Kualitas Udara dan Prediksi Kebakaran</h1>
-        <p style='font-size:16px;'>Aplikasi ini menampilkan data kualitas udara terkini dari sensor serta memprediksi tingkat risiko kebakaran menggunakan model CatBoost berbasis data Google Sheets.</p>
+        <p style='font-size:16px;'>Aplikasi ini menampilkan data kualitas udara terkini dari sensor IoT serta memprediksi tingkat risiko kebakaran menggunakan model Machine Learning CatBoost.</p>
     """, unsafe_allow_html=True)
 
 # === Load Model dan Preprocessor ===
@@ -67,13 +67,13 @@ tanggal = now.strftime("%d %B %Y")
 # === Tampilkan Prediksi Kualitas Udara ===
 st.markdown(f"""
     <div style='background-color:#0000cc;padding:18px;border-radius:10px;margin-top:10px;'>
-        <h4 style='color:white;text-align:center;'>Pada hari <b>{hari}</b>, tanggal <b>{tanggal}</b>, lahan ini diprediksi memiliki tingkat resiko kebakaran: 
+        <h4 style='color:white;text-align:center;'>Pada hari <b>{hari}</b>, tanggal <b>{tanggal}</b>, Berdasarkan dari data sensor daerah ini memiliki kualitas udara: 
         <u style='font-size:20px;'> {pred_label} </u></h4>
     </div>
 """, unsafe_allow_html=True)
 
 # === Riwayat Data + Prediksi ===
-st.subheader("📋 Riwayat Data Sensor + Prediksi CatBoost")
+st.subheader("📋 Riwayat Data Sensor dan Hasil Daeteksi ")
 data['Prediksi CatBoost'] = [
     le.inverse_transform([int(model.predict(scaler.transform([[row['PM2.5'], row['PM10'], row['CO']]]))[0])])[0]
     for _, row in data.iterrows()
@@ -99,8 +99,8 @@ if st.button("Prediksi Manual"):
 # === Footer ===
 st.markdown("""<hr style='margin-top:40px;'>""", unsafe_allow_html=True)
 st.markdown("""
-    <div style='background-color:black;padding:15px;border-radius:10px;text-align:center;'>
-        <h4 style='color:white;'>Smart Fire Prediction RHSEM – IoT Model</h4>
-        <p style='color:lightgray;'>Dikembangkan oleh Mahasiswa Universitas Putera Indonesia YPTK Padang Tahun 2025</p>
+    <div style='background-color:blue;padding:15px;border-radius:10px;text-align:center;'>
+        <h4 style='color:white;'>Deteksi Kualitas Udara Menggunakan IoT - Machine Learning Model</h4>
+        <p style='color:lightgray;'>Dikembangkan oleh Dosen Universitas Putera Indonesia YPTK Padang Tahun 2025</p>
     </div>
 """, unsafe_allow_html=True)
