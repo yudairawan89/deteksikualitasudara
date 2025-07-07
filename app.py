@@ -7,7 +7,7 @@ from datetime import datetime
 from catboost import CatBoostClassifier
 
 # === Konfigurasi Halaman ===
-st.set_page_config(page_title="Prediksi Kualitas Udara dan Kebakaran", layout="wide")
+st.set_page_config(page_title="Prediksi Kualitas Udara", layout="wide")
 col_logo, col_title = st.columns([1, 6])
 with col_logo:
     st.image("upi.png", width=120)
