@@ -10,7 +10,7 @@ from catboost import CatBoostClassifier
 st.set_page_config(page_title="Prediksi Kualitas Udara dan Kebakaran", layout="wide")
 col_logo, col_title = st.columns([1, 6])
 with col_logo:
-    st.image("upi.png", width=80)
+    st.image("upi.png", width=120)
 with col_title:
     st.markdown("""
         <h1 style='color:#004488;margin-bottom:0;'>📡 Sistem Monitoring Kualitas Udara dan Prediksi Kebakaran</h1>
@@ -34,6 +34,7 @@ if st.button("🔄 Tarik Data Baru"):
     st.cache_data.clear()
     st.success("✅ Data terbaru berhasil dimuat ulang.")
 
+# === Ambil data terakhir ===
 data = load_google_sheet()
 latest = data.iloc[-1]
 
@@ -45,9 +46,18 @@ pred_label = le.inverse_transform([pred_idx])[0]
 # === Tampilkan Data Sensor ===
 st.subheader("📊 Data Sensor Terkini")
 col1, col2, col3 = st.columns(3)
-col1.metric("**<span style='color:#004488;font-size:20px;'>PM2.5</span>**", f"{latest['PM2.5']}", unsafe_allow_html=True)
-col2.metric("**<span style='color:#004488;font-size:20px;'>PM10</span>**", f"{latest['PM10']}", unsafe_allow_html=True)
-col3.metric("**<span style='color:#004488;font-size:20px;'>CO</span>**", f"{latest['CO']}", unsafe_allow_html=True)
+
+with col1:
+    st.markdown("<p style='color:#004488;font-size:20px;font-weight:bold;'>PM2.5</p>", unsafe_allow_html=True)
+    st.metric(label="", value=f"{latest['PM2.5']}")
+
+with col2:
+    st.markdown("<p style='color:#004488;font-size:20px;font-weight:bold;'>PM10</p>", unsafe_allow_html=True)
+    st.metric(label="", value=f"{latest['PM10']}")
+
+with col3:
+    st.markdown("<p style='color:#004488;font-size:20px;font-weight:bold;'>CO</p>", unsafe_allow_html=True)
+    st.metric(label="", value=f"{latest['CO']}")
 
 # === Format Tanggal Hari Ini ===
 now = datetime.now()
