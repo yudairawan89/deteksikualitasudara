@@ -48,7 +48,10 @@ st.markdown(f"""
 
 # === Riwayat Data + Prediksi ===
 st.subheader("📋 Riwayat Data Sensor + Prediksi GRU")
-data['Prediksi GRU'] = [le.inverse_transform([np.argmax(model.predict(scaler.transform([[row['PM2.5'], row['PM10'], row['CO']]]).reshape(1,1,3)))])[0] for _, row in data.iterrows()]
+data['Prediksi GRU'] = [
+    le.inverse_transform([np.argmax(model.predict(scaler.transform([[row['PM2.5'], row['PM10'], row['CO']]]).reshape(1, 1, 3)))])[0]
+    for _, row in data.iterrows()
+]
 st.dataframe(data)
 
 # === Form Manual ===
@@ -58,7 +61,7 @@ pm10 = st.number_input("PM10", 0.0, 600.0, 150.0)
 co = st.number_input("CO", 0.0, 30000.0, 12000.0)
 
 if st.button("Prediksi Manual"):
-    arr = scaler.transform([[pm25, pm10, co]]).reshape(1,1,3)
+    arr = scaler.transform([[pm25, pm10, co]]).reshape(1, 1, 3)
     pred = model.predict(arr)
     label = le.inverse_transform([np.argmax(pred)])[0]
     st.markdown(f"""
