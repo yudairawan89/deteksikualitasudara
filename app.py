@@ -15,9 +15,9 @@ st.markdown("""
 
 # === Load Model dan Preprocessor ===
 model = CatBoostClassifier()
-model.load_model("models/catboost_ispu_model.cbm")
-scaler = joblib.load("models/scaler_ispu.pkl")
-le = joblib.load("models/label_encoder_ispu.pkl")
+model.load_model("catboost_ispu_model.cbm")
+scaler = joblib.load("scaler_ispu.pkl")
+le = joblib.load("label_encoder_ispu.pkl")
 
 # === Load Google Sheet ===
 @st.cache_data(ttl=60)
