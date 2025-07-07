@@ -2,6 +2,6 @@ streamlit
 pandas
 numpy
 matplotlib
-joblib
 scikit-learn
+joblib
 catboost
