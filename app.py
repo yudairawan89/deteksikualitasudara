@@ -13,7 +13,7 @@ with col_logo:
     st.image("upi.png", width=120)
 with col_title:
     st.markdown("""
-        <h1 style='color:#004488;margin-bottom:0;'>📡 Sistem Monitoring Kualitas Udara dan Prediksi Kebakaran</h1>
+        <h1 style='color:#004488;margin-bottom:0;'>📡 Sistem Monitoring Kualitas Udara</h1>
         <p style='font-size:16px;'>Aplikasi ini menampilkan data kualitas udara terkini dari sensor IoT serta memprediksi tingkat risiko kebakaran menggunakan model Machine Learning CatBoost.</p>
     """, unsafe_allow_html=True)
 
